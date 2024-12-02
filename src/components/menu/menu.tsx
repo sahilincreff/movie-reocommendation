@@ -6,7 +6,7 @@ import { useTheme } from "../../context/ThemeContext";
 import './menu.css';
 
 const Menu = () => {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
   const selected: string = 'Discover';
 
   return (

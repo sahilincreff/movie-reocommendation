@@ -1,7 +1,7 @@
 import Menu from "@/components/menu/menu";
 import MovieList from "@/components/movie-list/movie-list";
 import { ThemeProvider } from "../context/ThemeContext";
-import {NextUIProvider} from '@nextui-org/react'
+import { NextUIProvider } from '@nextui-org/react'
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
           <div className="bg-white col-span-3">
             <Menu />
           </div>
-          <div className="col-span-9">
+          <div className="col-span-9 movies-list">
             <MovieList />
           </div>
         </div>

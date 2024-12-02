@@ -24,9 +24,7 @@ const MovieList = () => {
   const currGridCols = 5;
 
   useEffect(() => {
-    const filteredMoviesTemp = moviesList.filter(
-      (currMovie) => currMovie.Title.toLowerCase().includes(searchText.toLowerCase())
-    );
+    const filteredMoviesTemp = moviesList.filter((currMovie) => currMovie.Title.toLowerCase().includes(searchText.toLowerCase()));
     setSelectedMovie(null);
     setSelectedMovieIndex(-1);
     setFilteredMovies(filteredMoviesTemp);
@@ -87,7 +85,7 @@ const MovieList = () => {
   };
 
   return (
-    <div className={`p-10 ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
+    <div className={`p-10 h-screen ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
       <div className="flex justify-between pb-4 pt-2 items-center">
         <div className={`${!searchOpen ? 'search-container' : ''} flex px-4 py-3 rounded-lg justify-between items-center cursor-pointer`}>
           <FaSearch size={24} onClick={() => setSearchOpen(!searchOpen)} />
@@ -96,7 +94,7 @@ const MovieList = () => {
               <input
                 placeholder="Title, Movies, Keyword"
                 onChange={(e) => setSearchText(e.target.value)}
-                className="bg-transparent search-input px-4 focus:border-none text-lg"
+                className="bg-transparent search-input px-4 focus:border-none text-lg focus:outline-none focus:ring-0"
               />
               <RxCross2 size={24} onClick={handleSearchClose} />
             </>
@@ -109,28 +107,28 @@ const MovieList = () => {
           <button className={`p-2`} onClick={() => handleSort('year')}>
             Sort by Year {sortBy === 'year' && (sortOrder === 'asc' ? '↑' : '↓')}
           </button>
-          {theme === 'light' ? <FaMoon size={22} onClick={toggleTheme} /> : <IoSunnyOutline size={24} onClick={toggleTheme} />}
-          {currView === 'grid' ? <FaList size={22} onClick={toggleView} /> : <BsFillGrid3X3GapFill size={24} onClick={toggleView} />}
+          {theme === 'light' ? <FaMoon size={22} onClick={toggleTheme} /> : <IoSunnyOutline size={22} onClick={toggleTheme} />}
+          {currView === 'grid' ? <FaList size={22} onClick={toggleView} /> : <BsFillGrid3X3GapFill size={22} onClick={toggleView} />}
           <BsThreeDotsVertical size={24} />
         </div>
       </div>
-      <div className={`${currView === 'grid' ? 'grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5' : 'flex flex-col'} gap-4`}>
-        {filteredMovies.map((movie, i) => (
-          <React.Fragment key={movie.imdbID}>
-            {selectedMovie && (currView === 'grid' ? i === Math.floor(selectedMovieIndex / currGridCols) * currGridCols : i == selectedMovieIndex) && (
-              <div className="col-span-5">
-                <MovieDetail movie={selectedMovie} />
-              </div>
-            )}
-            <MovieCard
-              movie={movie}
-              selectedCard={i === selectedMovieIndex}
-              currView={currView}
-              handleMovieClick={() => handleMovieClick(movie, i)}
-            />
-          </React.Fragment>
-        ))}
-      </div>
+      {filteredMovies.length > 0 ?
+        <div className={`${currView === 'grid' ? 'grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5' : 'flex flex-col'} gap-4`}>
+          {filteredMovies.map((movie, i) => (
+            <React.Fragment key={movie.imdbID}>
+              {selectedMovie && (currView === 'grid' ? i === Math.floor(selectedMovieIndex / currGridCols) * currGridCols : i == selectedMovieIndex) && (
+                <div className="col-span-5">
+                  <MovieDetail movie={selectedMovie} />
+                </div>
+              )}
+              <MovieCard movie={movie} selectedCard={i === selectedMovieIndex} currView={currView} handleMovieClick={() => handleMovieClick(movie, i)} />
+            </React.Fragment>
+          ))}
+        </div> :
+        <div className='flex items-center justify-center text-3xl font-bold h-full'>
+          No Movies Found!
+        </div>
+      }
     </div>
   );
 };
