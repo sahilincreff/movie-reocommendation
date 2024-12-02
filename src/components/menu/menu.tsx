@@ -7,7 +7,6 @@ import './menu.css';
 
 const Menu = () => {
   const { theme } = useTheme(); 
-  const user = {};
   const selected: string = 'Discover';
 
   return (

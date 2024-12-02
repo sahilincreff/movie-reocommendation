@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Menu from "@/components/menu/menu";
 import MovieList from "@/components/movie-list/movie-list";
 import { ThemeProvider } from "../context/ThemeContext";
