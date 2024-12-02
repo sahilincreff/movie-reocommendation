@@ -1,0 +1,37 @@
+.dark-theme {
+    background: #273245;
+    color: white;
+}
+
+.light-theme .movie-card {
+    background: #f1f1f1;
+    color: black;
+}
+
+.search-container {
+    background-color: #f9f9f9;
+}
+
+.dark-theme .search-container {
+    background-color: #1A2536;
+}
+
+.dark-theme .movie-card {
+    background: #394C61;
+    color: white;
+}
+
+.selected-movie {
+    border: 4px solid #00E0FF;
+}
+
+.movie-poster-img {
+    width: 100%;
+    height: 80%;
+}
+
+.movie-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
